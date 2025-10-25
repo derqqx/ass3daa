@@ -1,0 +1,18 @@
+graph G {
+  rankdir=LR;
+  node [shape=circle];
+
+  N1;
+  N2;
+  N3;
+  N4;
+  N5;
+
+  N2 -- N1 [label="58", color="red", penwidth=3.0];
+  N3 -- N1 [label="54", color="red", penwidth=3.0];
+  N4 -- N2 [label="81"];
+  N5 -- N2 [label="66", color="red", penwidth=3.0];
+  N5 -- N3 [label="100"];
+  N4 -- N1 [label="28", color="red", penwidth=3.0];
+  N1 -- N5 [label="67"];
+}
