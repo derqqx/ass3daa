@@ -9,21 +9,20 @@ public class Graph {
     private final Map<String, List<Edge>> adjacencies;
 
     public static class GraphData {
-        private int id;
-        private String size_group;
-        private List<String> vertices;
-        private List<Edge> edges;
+        // Делаем поля public или добавляем @SerializedName
+        public int id;
+        public String size_group;
+        public List<String> vertices;
+        public List<Edge> edges;
 
+        // Геттеры остаются для доступа
         public int getId() { return id; }
-        public void setId(int id) { this.id = id; }
         public String getSize_group() { return size_group; }
-        public void setSize_group(String size_group) { this.size_group = size_group; }
         public List<String> getVertices() { return vertices; }
-        public void setVertices(List<String> vertices) { this.vertices = vertices; }
         public List<Edge> getEdges() { return edges; }
-        public void setEdges(List<Edge> edges) { this.edges = edges; }
     }
 
+    // Остальной код без изменений...
     public Graph(List<String> verticesList, List<Edge> edges) {
         this.vertices = new HashSet<>(verticesList);
         this.edges = new ArrayList<>(edges);
@@ -51,13 +50,11 @@ public class Graph {
         dot.append("  rankdir=LR;\n");
         dot.append("  node [shape=circle];\n\n");
 
-        // добавляем вершины
         for (String vertex : vertices) {
             dot.append("  ").append(vertex).append(";\n");
         }
         dot.append("\n");
 
-        // добавляем ребра
         Set<String> mstEdgeSet = new HashSet<>();
         for (Edge edge : mstEdges) {
             String key = Math.min(edge.getFrom().hashCode(), edge.getTo().hashCode()) + "-" +
@@ -70,12 +67,10 @@ public class Graph {
                     Math.max(edge.getFrom().hashCode(), edge.getTo().hashCode());
 
             if (mstEdgeSet.contains(key)) {
-                // MST ребра красные
                 dot.append("  ").append(edge.getFrom()).append(" -- ").append(edge.getTo())
                         .append(" [label=\"").append(edge.getWeight())
                         .append("\", color=\"red\", penwidth=3.0];\n");
             } else {
-                // Обыч ребра чёрные
                 dot.append("  ").append(edge.getFrom()).append(" -- ").append(edge.getTo())
                         .append(" [label=\"").append(edge.getWeight()).append("\"];\n");
             }
@@ -85,7 +80,6 @@ public class Graph {
         return dot.toString();
     }
 
-    // Сохранение графа в дот
     public void saveAsDotFile(List<Edge> mstEdges, String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
             writer.write(toDotFormat(mstEdges));
