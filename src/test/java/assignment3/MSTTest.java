@@ -89,7 +89,7 @@ public class MSTTest {
         assertNotNull(dot);
         assertTrue(dot.contains("graph G"));
         assertTrue(dot.contains("A -- B"));
-        assertTrue(dot.contains("red")); // MST рёбра красные
+        assertTrue(dot.contains("red"));
     }
 
     private boolean isAcyclic(List<Edge> edges) {

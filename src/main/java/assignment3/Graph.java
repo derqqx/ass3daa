@@ -9,20 +9,17 @@ public class Graph {
     private final Map<String, List<Edge>> adjacencies;
 
     public static class GraphData {
-        // Делаем поля public или добавляем @SerializedName
         public int id;
         public String size_group;
         public List<String> vertices;
         public List<Edge> edges;
 
-        // Геттеры остаются для доступа
         public int getId() { return id; }
         public String getSize_group() { return size_group; }
         public List<String> getVertices() { return vertices; }
         public List<Edge> getEdges() { return edges; }
     }
 
-    // Остальной код без изменений...
     public Graph(List<String> verticesList, List<Edge> edges) {
         this.vertices = new HashSet<>(verticesList);
         this.edges = new ArrayList<>(edges);

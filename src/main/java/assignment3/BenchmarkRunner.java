@@ -25,9 +25,9 @@ public class BenchmarkRunner {
 
         try (FileWriter writer = new FileWriter(csvFileName)) {
             writer.write(csvOutput.toString());
-            System.out.println("✅ Benchmark results saved to: " + csvFileName);
+            System.out.println("Benchmark results saved to: " + csvFileName);
         } catch (IOException e) {
-            System.err.println("❌ Error saving CSV: " + e.getMessage());
+            System.err.println("Error saving CSV: " + e.getMessage());
         }
     }
 
